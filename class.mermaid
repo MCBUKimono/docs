@@ -1,0 +1,114 @@
+classDiagram
+    Category "1" -- "*" Product
+    class Category {
+        Integer id
+        String name
+        Category parentCategory
+        List~Product~ products
+    }
+
+    class Brand {
+        Integer id
+        String name
+    }
+
+    Product --|> Valuable
+    ProductSnapshot --|> Valuable
+    class Valuable {
+        <<Interface>>
+        Integer priceCents
+        Integer taxPer1000
+        Integer discountPer1000
+        discountedCents() Integer
+        taxCents() Integer
+        finalCentsToBePaid() Integer
+    }
+
+    Product "*" -- "1" Brand
+    class Product {
+        Integer id
+        String name
+        Brand brand
+        String description
+        List~ProductImage~ images
+        Category category
+    }
+
+    ProductImage "1..*" --* "1" Product
+    class ProductImage {
+        Integer id
+        Product product
+        Integer displayOrder
+    }
+
+    ReviewImage "1..*" --* "1" Review
+    class ReviewImage {
+        Integer id
+        Review review
+        Integer displayOrder
+    }
+
+    Review "*" -- "1" Product
+    Review "*" -- "1" Customer
+    class Review {
+        Integer id
+        Product product
+        Customer customer
+        List~ReviewImage~ images
+        String text
+        Integer scoreOutOf100
+    }
+
+    Customer "1" -- "*" Product: favorites
+    class Customer{
+        Integer id
+        String name
+        List~Product~ favorites
+    }
+
+    Product "1" -- "*" ProductSnapshot
+    class ProductSnapshot {
+        Integer id
+        Product product
+    }
+
+    Invoice "*" -- "1" Customer
+    Invoice "1" *-- "*" ProductSnapshot
+    Invoice "*" -- "1" PaymentMethod
+    class Invoice {
+        Integer id
+        Integer invoiceNumber
+        Customer customer
+        String invoiceAddress
+        String invoiceName
+        List~ProductSnapshot~ products
+        PaymentMethod paymentMethod
+        calculateTotal() Integer
+        createPDF() void
+    }
+
+    Order "1" -- "1" Invoice
+    Order "*" -- "1" OrderStatus
+    class Order {
+        Integer id
+        String shippingAddress
+        String shippingName
+        OrderStatus status
+    }
+
+    class OrderStatus {
+        <<Enumeration>>
+        CANCELLED
+        COLLECTING_PRODUCTS
+        READY_FOR_SHIPPING
+        SHIPPED
+        DELIVERED
+        RETURNED
+    }
+
+    class PaymentMethod {
+        <<Enumeration>>
+        CREDIT_CARD
+        BANK_TRANSFER
+        getCommissionPer1000() Integer
+    }
