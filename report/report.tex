@@ -805,7 +805,7 @@ We propose the following mitigations:
   \item \textbf{Prioritization of features:}
     We should use a
     prioritization framework like MoSCoW (Must have, Should have, Could have,
-    Won't have) to focus only on the features essential to the system’s core
+    Won't have) to focus only on the features essential to the system's core
     functionality.
   \item \textbf{Defining the minimum viable product:}
     We should limit the initial to what is necessary for launch and consider
@@ -934,7 +934,7 @@ should be updated to avoid any confusion later.
     modify any previously created invoice or order.
   \item \textbf{Item inspection:} Customers must be able
     to inspect a specific item by itself, in a special context where only the
-    selected item is displayed in detail. This ‘page’ should display all applicable
+    selected item is displayed in detail. This ``page'' should display all applicable
     information to the customer, such as its title and images, description, current
     price, etc. This page must also display comments and reviews created by other
     customers
@@ -1216,7 +1216,7 @@ a robust system specification.
     The customer must be logged in to submit a review.
   \item[Postcondition] \hfill \\
     Submitted reviews are displayed on the product page
-  and factored into the product’s average rating.
+  and factored into the product's average rating.
   \item[Side effects] \hfill \\
     The average rating of the product is recalculated and
   updated.
@@ -1386,9 +1386,9 @@ a robust system specification.
   status, and associated invoices.
   \item[Destination] \hfill \\
   The information is retrieved from the database and
-  displayed on the customer’s account page.
+  displayed on the customer's account page.
   \item[Action] \hfill \\
-  The system queries the database for the customer’s
+  The system queries the database for the customer's
   order records, filters by status or date if applicable, and displays the data
   in an organized format.
   \item[Requirements] \hfill \\
@@ -1403,8 +1403,271 @@ a robust system specification.
   None.
 \end{description}
 
-\section{Stories and user scenarios}
-% TODO.
+\section{Stories and User Scenarios}
+\subsection{User Story 1: Customer Registration}
+\begin{description}
+  \item[Actors] Customer, System
+  \item[Preconditions] \hfill \\
+    The customer is on the registration page.
+\end{description}
+\subsubsection{Successful Registration Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer navigates to the registration page.
+      \item They fill in their email, password, and optional personal details.
+      \item The system validates the inputs, ensuring the email is unique and the
+        password is strong.
+      \item The registration is successful, and the customer is redirected to the
+        login page.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer is registered and can log in to their account.
+\end{description}
+\subsubsection{Invalid Registration Inputs Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer attempts to register with an already registered email
+        or a weak password.
+      \item The system displays an error message indicating the issue
+        (e.g., "Email is already in use").
+      \item The customer corrects the errors and successfully registers.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer is successfully registered after fixing the errors.
+\end{description}
+
+\subsection{User Story 2: Customer Account Management}
+\begin{description}
+  \item[Actors] Customer, System
+  \item[Preconditions] \hfill \\
+    The customer is logged in to their account.
+\end{description}
+\subsubsection{Updating the Name of the Account Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+  \begin{itemize}
+    \item The customer logs into their account.
+    \item They navigate to the "Account Settings" page.
+    \item They edit the "Name" field and save the changes.
+    \item The system validates the input and updates the name in the database.
+    \item A confirmation message is displayed to the customer
+      (e.g., "Your name has been updated successfully.").
+  \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer's updated name is saved and reflected in their account.
+\end{description}
+\subsubsection{Changing the Password Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+  \begin{itemize}
+    \item The customer navigates to the "Account Settings" page.
+    \item They select the "Change Password" option.
+    \item They enter their current password and the new password.
+    \item The system validates the inputs (e.g., the current password is
+      correct, and the new password meets security requirements).
+    \item The password is updated, and a confirmation message is displayed to
+      the customer.
+  \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer's password is securely updated.
+\end{description}
+\subsubsection{Updating Contact Information Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer navigates to the "Account Settings" page.
+      \item They edit their email or phone number and save the changes.
+      \item The system validates the new contact information (e.g., email format
+        is correct, phone number has a valid structure).
+      \item A confirmation message is displayed to the customer.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer's updated contact information is saved in the system.
+\end{description}
+\subsection{User Story 3: Browsing and Searching for Products}
+\begin{description}
+  \item[Actors] Customer, System
+\end{description}
+\subsubsection{Browsing Products Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer navigates to the "All Products" page.
+      \item The system displays a paginated list of products,
+        including images, titles, and prices.
+      \item The customer browses through multiple pages to explore options.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer views products they are interested in.
+\end{description}
+\subsubsection{Searching with Filters Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer enters a search term and applies filters
+        (e.g., brand, category, price range).
+      \item The system retrieves and displays products matching the criteria.
+      \item The customer selects a product to view its detailed page.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer finds relevant products based on their criteria.
+\end{description}
+
+\subsection{User Story 4: Viewing Detailed Product Information}
+\begin{description}
+  \item[Actors] Customer, System
+\end{description}
+\subsubsection{Viewing a Product Page Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer selects a product from the list or search results.
+      \item The system displays the product's detailed page with images,
+        description, price, reviews, and ratings.
+      \item The customer reads the reviews and decides whether to add the
+        product to their cart.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer gains detailed insights into the product.
+\end{description}
+
+\subsection{User Story 5: Adding Products to Favorites}
+\begin{description}
+  \item[Actors] Customer, System
+\end{description}
+\subsubsection{Adding a Product to Favorites Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer clicks the "Add to Favorites" button on a product page.
+      \item The system adds the product to the customer's favorites list.
+      \item The customer navigates to the "Favorites" section to verify the
+        product is listed.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The product is saved to the customer's favorites list for easy access later.
+\end{description}
+
+\subsection{User Story 6: Purchasing Items}
+\begin{description}
+  \item[Actors] Customer, Payment Gateway Provider, System
+  \item[Preconditions] \hfill
+    The customer has selected products to purchase.
+\end{description}
+\subsubsection{Completing a Purchase Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer adds products to their shopping cart.
+      \item They proceed to checkout, review their cart, and provide payment and
+        shipping details.
+      \item The system processes the payment via the integrated payment gateway
+        and confirms the order.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The order is placed, and the customer receives a confirmation.
+\end{description}
+\subsubsection{Payment Failure Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer completes the checkout process but encounters a payment
+        failure.
+      \item The system displays an error message and provides options to retry
+        or select another payment method.
+    \end{itemize}
+  \item[Postconditions]
+    The payment issue is resolved, or the customer decides to retry later.
+\end{description}
+\subsection{User Story 7: Managing Orders}
+\begin{description}
+  \item[Actors] Customer, System
+  \item[Preconditions] \hfill
+    The customer has placed at least one order.
+\end{description}
+\subsubsection{Viewing Order Status Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer navigates to the "Order History" section.
+      \item The system displays a list of past and current orders with their
+        statuses.
+      \item The customer views the details of a specific order, including the
+        associated invoice.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The customer is informed about the order's status and details.
+\end{description}
+\subsubsection{Canceling an Order Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer selects an unfulfilled order and clicks "Cancel."
+      \item The system verifies the order status and confirms the cancellation.
+      \item The customer receives a notification that the order was successfully
+        canceled.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The order is canceled successfully, and the customer receives a
+    confirmation.
+\end{description}
+
+\subsection{User Story 8: Writing Product Reviews}
+\begin{description}
+  \item[Actors] Customer, System
+  \item[Preconditions] \hfill \\ The customer has purchased the product.
+\end{description}
+\subsubsection{Submitting a Review Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The customer navigates to a purchased product's page.
+      \item They fill in a review form with text, an optional image, and a star
+        rating.
+      \item The system validates and stores the review, displaying it publicly
+        on the product page.
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The review is added to the product's page.
+\end{description}
+
+\subsection{User Story 9: Managing Inventory}
+\begin{description}
+  \item[Actors] Store Administrator, System
+\end{description}
+\subsubsection{Updating Product Details Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The administrator logs into the admin panel.
+      \item They select a product and update its price and discount information.
+      \item The system validates the updates and saves the changes without
+        affecting existing invoices.
+    \end{itemize}
+  \item[Postconditions] \hfill \\ The product details are updated in the system.
+\end{description}
+
+\subsection{User Story 10: Adding a New Product}
+\begin{description}
+  \item[Actors] Store Administrator, System
+\end{description}
+\subsubsection{Successful Product Addition Scenario}
+\begin{description}
+  \item[Main Flow] \hfill
+    \begin{itemize}
+      \item The administrator navigates to the "Product Management" panel.
+      \item They click the "Add New Product" option.
+      \item The administrator fills in all required fields, including title,
+        description, price, stock quantity, category, and uploads images.
+      \item The system validates the data and saves the new product.
+      \item They click the "Save" button.
+      \item A confirmation message appears (e.g., "Product added successfully").
+    \end{itemize}
+  \item[Postconditions] \hfill \\
+    The product is added to the inventory and visible in the product list.
+\end{description}
 
 \section{Conclusion}
 % TODO.
@@ -1528,12 +1791,14 @@ Motorcu çocuk
 \end{IEEEbiography}
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_ates.png}}]{Oğuz Anıl Ateş}
-Was born in Uşak.
-He graduated from Dursun Yalım Science High School in 2019.
-He was accepted to the Computer Engineering department of Manisa Celâl Bayar
-University (MCBU) in 2020.
-He finished the preparatory year with a 97 GPA\@.
-He continuous his fourth year of education in the field.
+He was born in Uşak and graduated from Dursun Yalım Science High School in 2019.
+In 2020, he was accepted into the Computer Engineering department at Manisa
+Celâl Bayar University (MCBU).
+He completed his preparatory year with a 97 GPA and earned the Pearson Gold
+certificate.
+In 2024, he interned at Indas Technology.
+He is currently in his fourth year of studies in the field of Computer
+Engineering.
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
