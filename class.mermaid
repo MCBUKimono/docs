@@ -72,7 +72,17 @@ classDiagram
         Product product
     }
 
-    Invoice "*" -- "1" Customer
+    Order "*" -- "1" Customer
+    Order "1" -- "1" Invoice
+    Order "*" -- "1" OrderStatus
+    class Order {
+        Integer id
+        String shippingAddress
+        String shippingName
+        String trackingCode
+        OrderStatus status
+    }
+
     Invoice "1" *-- "*" ProductSnapshot
     Invoice "*" -- "1" PaymentMethod
     class Invoice {
@@ -85,15 +95,6 @@ classDiagram
         PaymentMethod paymentMethod
         calculateTotal() Integer
         createPDF() void
-    }
-
-    Order "1" -- "1" Invoice
-    Order "*" -- "1" OrderStatus
-    class Order {
-        Integer id
-        String shippingAddress
-        String shippingName
-        OrderStatus status
     }
 
     class OrderStatus {
