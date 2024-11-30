@@ -25,6 +25,7 @@ sequenceDiagram
             BE ->>+ DB: Set status to "unfulfilled"
             DB -->>- BE: (done)
             BE -->> FE: Success HTTP response
+            deactivate BE
             FE -->> Customer: Display new order details
         end
         deactivate FE
