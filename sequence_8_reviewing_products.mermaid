@@ -1,0 +1,33 @@
+sequenceDiagram
+    actor Customer
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Database
+
+    Customer ->>+ FE: Select a product
+    note over Customer,DB: Refer to the sequence diagram for "Viewing Detailed Product Information"
+    FE -->>- Customer: Display the details of the<br>selected product
+
+    Customer ->>+ FE: Click the "Review" button
+    Customer ->> FE: Enter review text
+    opt
+        Customer ->> FE: Upload review images
+    end
+    Customer ->> FE: Enter a rating
+    Customer ->> FE: Submit review form
+
+    alt hasn't bought Product
+        FE ->>+ BE: Forward review data
+        BE ->>+ DB: Confirm the customer has bought the product
+        DB -->>- BE: The customer HASN'T bought the product
+        BE -->>- FE: HTTP 403 response
+        FE -->> Customer: Display error message
+    else has bought Product
+        FE ->>+ BE: Forward review data
+        BE ->>+ DB: Confirm the customer has bought the product
+        DB -->>- BE: The customer HAS bought the product
+        BE -->>- FE: Success HTTP response
+        FE -->> Customer: Display review page
+    end
+
+    deactivate FE
