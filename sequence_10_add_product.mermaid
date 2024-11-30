@@ -1,0 +1,16 @@
+sequenceDiagram
+    actor Admin as Store Administrator
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Database
+
+    Admin ->> FE: Click the product<br>creation button
+    Admin ->> FE: Set title, description, ...
+    Admin ->>+ FE: Submit
+    FE ->>+ BE: HTTP request
+    BE ->>+ DB: Create a new :Product object
+    create participant Product
+    DB ->> Product: <create>
+    DB -->>- BE: (done)
+    BE -->>- FE: HTTP success response
+    FE -->>- Admin: Display the product's page

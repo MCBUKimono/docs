@@ -1,0 +1,20 @@
+sequenceDiagram
+    actor Admin as Store Administrator
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Database
+
+    Admin ->> FE: Select a product
+    alt
+        Admin ->> FE: Update its price
+    else
+        Admin ->> FE: Update its tax group
+    else
+        Admin ->> FE: Update its discount
+    end
+    Admin ->>+ FE: Submit
+    FE ->>+ BE: HTTP request
+    BE ->>+ DB: Update the necessary fields
+    DB -->>- BE: (done)
+    BE -->>- FE: HTTP success response
+    FE -->>- Admin: Update the page
