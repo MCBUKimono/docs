@@ -600,8 +600,8 @@ Our objectives are
   \item to integrate essential functionalities for customers, administrators,
     and external service providers,
   \item to Ensure compliance with modern e-commerce standards, GDPR, and
-    accessibility guidelines,
-  \item and to follow a modular design approach to enable scalability and
+    accessibility guidelines, and
+  \item to follow a modular design approach to enable scalability and
     adaptability for future upgrades.
 \end{enumerate*}
 
@@ -677,8 +677,8 @@ We have four types of stakeholders:
 \begin{enumerate*}
   \item end users,
   \item system managers,
-  \item system owners,
-  \item and external stakeholders.
+  \item system owners, and
+  \item external stakeholders.
 \end{enumerate*}
 They will now be discussed in detail.
 
@@ -748,6 +748,165 @@ processing solutions, such as PayPal, credit card processors, or other regional
 payment services.
 These providers ensure that customers' financial details are protected and that
 transactions are processed securely.
+
+\section{Problems in the Requirements Engineering Process and Mitigations}
+% TODO: Burası tam değil.
+
+\section{Requirements}
+\subsection{User Requirements}
+\subsubsection{Functional Requirements}
+\begin{itemize}
+  \item \textbf{Customer registration \& account management:}
+    Customers must be able to register, log in and log out. Customers
+    must be able to update their login information, such as e-mails, passwords,
+    preferred addresses.
+  \item \textbf{Item management:} Administrators must be
+    able to add, remove, and update the details of items available to be
+    purchased in the shop. Details of products must include product title,
+    product description, one or more product images, the brand that makes the
+    product, and the category that the product is a member of, the price of the
+    product, the tax
+    group the product is in, and the current discount that is applied to the
+    product. Any price, tax, or discount changes made to the product must not
+    modify any previously created invoice or order.
+  \item \textbf{Item inspection:} Customers must be able
+    to inspect a specific item by itself, in a special context where only the
+    selected item is displayed in detail. This ‘page’ should display all applicable
+    information to the customer, such as its title and images, description, current
+    price, etc. This page must also display comments and reviews created by other
+    customers
+  \item \textbf{Product reviews \& comments:} Customers
+    must be able to add comments, and optionally images, to products and rate them
+    with a score, which will be displayed along with the product title and
+    description where available.
+  \item \textbf{List items:} Customers must be able to
+   list all items available to be purchased.
+  \item \textbf{Item searching:} Customers must be able to
+    specify filters to see items that interest them, using filters that include
+    searching by name, description, category, and brand.
+  \item \textbf{Favorite products management:} Customers
+   must be able to create and maintain a list of their favorite products.
+  \item \textbf{Item purchasing:} Customers must be able
+    to purchase items by adding desired items into a virtual ``shopping cart''
+    and then create an order from their carts' contents.
+  \item \textbf{Order status \& history listing:}
+    Customers must be able to view statuses of
+    their orders and invoices associated with them. Customers must be able to
+    cancel unfulfilled orders.
+\end{itemize}
+\subsubsection{Non-functional Requirements}
+\begin{itemize}
+  \item \textbf{Availability:} 24/7
+  \item \textbf{Safety:} Customer payment details must be
+    securely stored and not exposed to unauthorized access.
+  \item \textbf{Security:} User data must be stored
+    securely using encryption.
+  \item \textbf{Response Time:} Any page of the website
+    should load within 3 seconds.
+  \item \textbf{Usability:} The system must have a user-friendly interface.
+    The system must employ a fully responsive web design
+    providing optimal viewing and interaction across all devices and viewport
+    sizes.
+\end{itemize}
+\subsection{System Requirements}
+\subsubsection{Functional Requirements Derived from User Requirements}
+\begin{itemize}
+  \item \textbf{SR-01 -- Customer registration \& account management:}
+  The system shall implement a user authentication module to
+  handle registration, login, and logout functionalities. The system shall
+  support database operations for CRUD (Create, Read, Update, Delete) actions on
+  user credentials, including email, password, and preferred address fields. Passwords
+  shall be stored securely using encryption algorithms such as bcrypt or PBKDF2. APIs
+  or backend endpoints shall be created to allow secure user detail updates.
+  \item \textbf{Item management:}
+  The system shall include
+  an admin interface to perform CRUD operations on items, including the following
+  fields: title, description, images, brand, category, price, tax group, and
+  discount. Changes in price, tax or discount shall not retroactively affect
+  existing orders or invoices. The system shall validate all input data for item
+  details before saving it to the database to ensure data consistency.
+  \item \textbf{Item inspection:}
+  The system shall
+  dynamically generate detailed item pages using item-specific database queries,
+  displaying all associated fields such as title, description, images, and
+  average review score. The system shall implement a mechanism to retrieve and
+  display related customer-generated reviews and comments, including pagination
+  where necessary.
+  \item \textbf{Product reviews \& comments:} The
+  system shall implement a feature allowing customers to submit reviews and
+  comments through frontend forms, validating the input before saving it to the
+  database. A database table shall store customer reviews with references to the
+  associated product and customer IDs, ensuring relational integrity. APIs shall
+  be created to retrieve and display reviews and ratings alongside product
+  information.
+  \item \textbf{Item listing:} The system shall provide an
+  endpoint or service to retrieve all items with essential details such as name,
+  image, and price for display in the frontend. Pagination shall be implemented
+  to handle large datasets.
+  \item \textbf{Item searching: }The system shall include
+  search functionality. Filtering logic shall be implemented in the backend to
+  handle search parameters.
+  \item \textbf{Favorite products management:} The system
+  shall support a database structure to store customer-specific favorite product
+  lists, ensuring a many-to-many relationship between customers and items. These
+  lists can be viewed by the creating customer.
+  \item \textbf{Item purchasing:} The system shall
+  implement a shopping cart feature fully on the frontend, enabling customers to
+  add, update, and remove items. The cart will be stored in the customer's
+  browser via local storage or session storage, ensuring persistence during the customer's
+  session. Payment gateway integration shall securely handle order checkout using
+  data sent from the frontend.
+  \item \textbf{Order status \& history listing:} The system shall provide the necessary
+  endpoints to track orders and associate them with customer accounts and
+  generated invoices.
+\end{itemize}
+\subsubsection{Additional Functional Requirements to Support Other Stakeholders}
+\begin{itemize}
+  \item \textbf{Creation of invoices: }When an order is
+  created, an invoice is created along with the order.
+  \item \textbf{Shipment notifications:} The system must
+  generate daily, upon creations of orders, notifications for administrators that
+  alert them they need to fulfill a new shipment. If an order is created before a
+  notification is created, the shipment notification must not be created.
+  \item \textbf{Creation of shipping labels:} The system must create shipping labels to be
+  printed and put onto boxes by workers in the warehouse.
+\end{itemize}
+\subsubsection{Additional Non-functional Requirements}
+\begin{itemize}
+  \item \textbf{Performance:} The system must handle up to
+  1000 concurrent users.
+  \item \textbf{Modularity:} The system must be modular
+  and easy to update.
+  \item \textbf{Implementation:} The system must be
+  implemented using the Java programming language. The JUnit unit-testing
+  framework must be used.
+\end{itemize}
+
+\section{Discussion about the Completeness and Consistency of Requirements}
+The provided requirements represent a thorough attempt to specify a
+comprehensive system with detailed considerations for both functional and
+non-functional aspects pertaining to both the user and system.
+Several observations can be made regarding its completeness, consistency and
+potential areas for improvement. Namely, the part about the payment gateway
+integration lacks specific details about
+\begin{enumerate*}
+  \item how failed transactions will be handled, and
+  \item how refund and chargebacks are handled.
+\end{enumerate*}
+Also, since there are no expected load conditions, the requirement about
+supporting 1,000 concurrent users is completely arbitrary and not based on any
+actual requirement.
+Finally, there are no system requirements describing how the front-end will be
+implemented as there were no requests made by the client about this matter.
+
+In conclusion, stakeholders -namely, the client- may make requests about
+specific front-end stacks, or add more requirements such as internationalization
+support, accessibility compliance, analytics, reporting capabilities etc.
+in parts of the system where the provided requirements are deemed to not create
+a robust system specification.
+
+\section{Structured System Requirements Specification}
+% TODO.
 
 \section{Conclusion}
 % TODO.
