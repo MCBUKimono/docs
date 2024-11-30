@@ -1,0 +1,20 @@
+sequenceDiagram
+    actor Customer
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Database
+
+    Customer ->>+ FE: Select a product
+    note over Customer,DB: Refer to the sequence diagram for "Viewing Detailed Product Information"
+    FE -->>- Customer: Display the details of the<br>selected product
+
+    Customer ->>+ FE: Click favorite button
+    FE ->> BE: HTTP request
+    deactivate FE
+    activate BE
+    BE ->>+ DB: Add :Product to the favorites of :Customer
+    DB -->>- BE: (done)
+    BE -->> FE: Success HTTP response
+    deactivate BE
+    activate FE
+    FE -->>- Customer: Modify the button to say<br>"Un-favorite"
