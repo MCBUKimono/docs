@@ -1,0 +1,35 @@
+sequenceDiagram
+    actor Customer
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Database
+
+    Customer ->> FE: Open website
+    activate FE
+    Customer ->> FE: Go to profile page
+    FE ->> Customer: Display current details
+    Customer ->> FE: Enter updated details
+    alt New details are valid
+        FE ->> BE: Forward user entered details
+        activate BE
+        BE ->> BE: Validate the details
+        note over BE: Details are valid.
+        BE ->> DB: Forward new details
+        activate DB
+        DB -->> BE: Details saved
+        deactivate DB
+        BE ->> FE: Send confirmed details back
+        deactivate BE
+        FE ->> Customer: Display new details
+    else New details are invalid
+        FE ->> BE: Forward user entered details
+        activate BE
+        BE ->> BE: Validate the details
+        note over BE: Details are invalid.
+        BE ->> FE: Send error message about<br>why the details are invalid
+        deactivate BE
+        FE ->> Customer: Show appropriate error page
+    end
+
+    Customer ->> FE: Close website
+    deactivate FE
