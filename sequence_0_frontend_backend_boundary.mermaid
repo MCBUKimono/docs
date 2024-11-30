@@ -1,0 +1,36 @@
+sequenceDiagram
+    box blue Unprivileged client context
+        actor Customer
+        participant FE as Front-end
+    end
+    box blue Privileged server context
+        participant BE as Back-end
+        participant DB as Database
+    end
+
+    activate FE
+    Customer ->> FE: Action
+    alt Valid session token
+        FE ->> BE: HTTP request
+        activate BE
+        BE ->> DB: Check if session is valid
+        activate DB
+        DB -->> BE: Session is valid
+        deactivate DB
+        BE ->> BE: Handle request
+        BE ->> FE: HTTP response
+        deactivate BE
+        FE ->> FE: Handle response<br>(show new page or modify current page)
+    else Invalid token
+        FE ->> BE: HTTP request
+        activate BE
+        BE ->> DB: Check if session is valid
+        activate DB
+        DB -->> BE: Session is invalid or expired
+        deactivate DB
+        note over BE: The request is not handled.
+        BE ->> FE: HTTP 403 Response
+        deactivate BE
+        FE ->> Customer: Render login page
+    end
+    deactivate FE
