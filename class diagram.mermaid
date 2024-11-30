@@ -32,6 +32,8 @@ classDiagram
         String description
         List~ProductImage~ images
         Category category
+        Double averageScoreOutOf100
+        updateAverageScore() void
     }
 
     ProductImage "1..*" --* "1" Product

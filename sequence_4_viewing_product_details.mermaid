@@ -12,8 +12,5 @@ sequenceDiagram
     FE ->>+ BE: Request details of the product
     BE ->>+ DB: Get details of the product
     DB -->>- BE: Respond with Product
-    BE ->>+ DB: Get the average score of all Review<br>objects associated with the product
-    DB -->>- BE: Respond with double
-
-    BE ->>- FE: Send the details of the product<br>along with the average score
+    BE ->>- FE: Send the details of the product
     FE ->>- Customer: Display the details of the<br>selected product
