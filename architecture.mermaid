@@ -1,0 +1,20 @@
+architecture-beta
+    group frontend(cloud)[Frontend]
+
+    service frontend_server(server)[HTTP server] in frontend
+    service frontend_static(disk)[Storage] in frontend
+
+    frontend_server:L -- R:frontend_static
+
+    group api(cloud)[Backend]
+
+    service db(database)[Database] in api
+    service disk1(disk)[Storage] in api
+    service disk2(disk)[Storage] in api
+    service server(server)[Server] in api
+
+    server:R -- L:db
+    disk1:T -- B:server
+    disk2:T -- B:db
+
+    frontend_server:R -- L:server
