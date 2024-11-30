@@ -187,8 +187,7 @@
 % Also of interest may be the (relatively newer and more customizable)
 % algorithmicx.sty package by Szasz Janos:
 % http://www.ctan.org/pkg/algorithmicx
-
-
+\usepackage[inline]{enumitem}
 
 
 % *** ALIGNMENT PACKAGES ***
@@ -373,11 +372,11 @@
 %Michael~Shell,~\IEEEmembership{Member,~IEEE,}
 %John~Doe,~\IEEEmembership{Fellow,~OSA,}
 %and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
-Oğuz~Anıl~Ateş,
-Muhammet~Berk~Can,
-Eren~Gökçe,
 Emre~Özcan,
-Melisa~Uyar%
+Eren~Gökçe,
+Melisa~Uyar,
+Muhammet~Berk~Can,
+Oğuz~Anıl~Ateş%
 \thanks{All authors were with the Department of Computer Engineering,
 Manisa Celâl Bayar University, 45140 Manisa, Türkiye.}% <-this % stops a space
 \thanks{Manuscript from December 1, 2024.}% <-this % stops a space
@@ -440,6 +439,7 @@ Manisa Celâl Bayar University, 45140 Manisa, Türkiye.}% <-this % stops a space
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
+% TODO: Write the abstract.
 The abstract goes here.
 \end{abstract}
 
@@ -482,6 +482,7 @@ The abstract goes here.
 %
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
+% TODO: Write the introduction.
 \IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
 for IEEE journal papers produced under \LaTeX\ using
 IEEEtran.cls version 1.8b and later.
@@ -493,15 +494,9 @@ I wish you the best of success.
 
 \hfill August 26, 2015
 
-\subsection{Subsection Heading Here}
-Subsection text here.
-
+% TODO:
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
-
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
-
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -597,10 +592,165 @@ Subsubsection text here.
 % footnotes above bottom floats. This can be corrected via the
 % \fnbelowfloat command of the stfloats package.
 
+\section{Feasibility Study and Plan}
+Our objectives are
+\begin{enumerate*}
+  \item to develope an online technology store with a robust, user-friendly,
+    and secure platform,
+  \item to integrate essential functionalities for customers, administrators,
+    and external service providers,
+  \item to Ensure compliance with modern e-commerce standards, GDPR, and
+    accessibility guidelines,
+  \item and to follow a modular design approach to enable scalability and
+    adaptability for future upgrades.
+\end{enumerate*}
 
+We will now discuss the feasibility of the project and the plan to achieve the
+objectives.
 
+\subsection{Technical Feasibility}
+\begin{itemize}
+  \item \textbf{Platform:} Java backend using Spring Boot for RESTful APIs
+    ensures scalability and maintainability.
+  \item \textbf{Frontend:} Svelte for building a dynamic, responsive, and
+    lightweight user interface.
+  \item \textbf{Database:} PostgreSQL for reliable and scalable data storage.
+  \item \textbf{Testing:} JUnit for unit testing and Maven for dependency
+    management.
+  \item \textbf{Server:} DigitalOcean provides reliable cloud hosting with
+    necessary configurations.
+  \item \textbf{Design Tools:} Figma for prototype design ensures stakeholder
+    collaboration and UI consistency.
+  \item \textbf{Monitoring Tools:} Sentry, Datadog, and New Relic provide robust
+    monitoring for performance and error tracking.
+\end{itemize}
+
+Our assessment is that this stack is reliable, widely supported, and feasible
+for the development team's skill set and project scope.
+
+\subsection{Operational Feasibility}
+The proposed system ensures seamless engagement with all stakeholders.
+Customers will benefit from an intuitive platform offering secure payment
+options and efficient order tracking.
+Administrators will have access to robust tools for managing products and
+inventory, streamlining operational workflows.
+IT support teams will be equipped with comprehensive documentation and training,
+enabling them to address technical challenges effectively.
+
+Operational management will leverage GitHub Projects with Kanban methodology,
+facilitating effective task tracking and prioritization. Overall, the system's
+capabilities are well-aligned with stakeholder requirements, supporting
+practical and achievable operational goals.
+
+\subsection{Economic Feasibility}
+The initial costs of the project only include server costs from DigitalOcean,
+which we will eliminate using the GitHub Student Developer Pack which includes
+\$200 free credits for DigitalOcean.
+
+The ongoing costs are monitoring tools, software development kits, and
+integrated development environment licenses.
+We will mitigate most of these using student plans.
+Open-source libraries and tools will be used where available to reduce or
+eliminate costs (e.g. PostgreSQL instead of Oracle DB).
+
+\subsection{Project Timeline}
+\begin{itemize}
+  \item \textbf{Week 1-2:} Requirements gathering and feasibility study.
+  \item \textbf{Week 3-4:} System design.
+  \item \textbf{Week 5-6:} Development.
+    \begin{itemize}
+      \item Backend API and database integration.
+      \item Frontend implementation and unit tests.
+    \end{itemize}
+  \item \textbf{Week 6-7:} Testing and debugging.
+\end{itemize}
+
+\subsection{Legal and Ethical Feasibility}
+GDPR compliance will be ensured by anonymizing user data where possible and
+encrypting sensitive information.
+Ethical design principles will be used to avoid dark patterns and ensure
+accessibility for all users.
+All third-party libraries and tools will be properly licensed.
+
+\section{Stakeholders}
+We have four types of stakeholders:
+\begin{enumerate*}
+  \item end users,
+  \item system managers,
+  \item system owners,
+  \item and external stakeholders.
+\end{enumerate*}
+They will now be discussed in detail.
+
+\subsection{End Users}
+End users are the primary stakeholders who will interact with the system.
+
+\subsubsection{Customers}
+Customers are individuals who browse, purchase, and manage their accounts and
+orders in the system. They rely on a seamless shopping experience, including
+secure payments and order tracking.
+
+\subsubsection{Store Administrators}
+Store administrators are staff responsible for overseeing the overall platform
+operations. They manage inventory, update product listings, handle promotions,
+discounts, and oversee pricing strategies. Store administrators ensure that all
+data related to products, prices, and stock availability is accurate and
+up-to-date.
+
+\subsection{System Managers}
+System managers are responsible for maintaining the system's operational
+efficiency and ensuring that all components are functioning correctly.
+
+\subsubsection{Customer Support Team}
+Customer support agents handle inquiries, resolves complaints, and process
+returns and exchanges.
+They ensure customer satisfaction by addressing issues such as order delays,
+faulty products, and assisting with troubleshooting or product recommendations. 
+The support team is crucial for maintaining a positive relationship with
+customers.
+
+\subsubsection{IT and Development Team}
+The IT and development teams include
+developers and engineers responsible for building, maintaining, and updating the
+website.
+They manage security protocols, ensure smooth operation, and implement
+performance enhancements. They address technical issues, perform bug fixes,
+and ensure that the platform is scalable to handle growth and fluctuating
+demand.
+
+\subsection{System Owners}
+System owners are the individuals or entities responsible for the system's
+development, maintenance, and overall success.
+
+\subsubsection{Business Owners/Management}
+The company's leadership, who oversee the strategic direction and financial
+health of the platform.
+This could include the CEO or senior management
+responsible for setting sales targets, customer engagement strategies, and
+long-term goals for platform growth.
+They ensure that the platform meets market
+trends, optimizes profits, and adheres to corporate objectives.
+
+\subsection{External Stakeholders}
+External stakeholders are individuals or entities that interact with the system
+but are not directly involved in its day-to-day operations.
+
+\subsubsection{Warehouse and Shipping Partners}
+Warehouse and shipping partners include logistics companies or internal shipping
+departments that handle the storage, packing, and delivery of products to
+customers.
+They manage inventory in warehouses, ensure products are shipped within the
+expected timeframes, and update the system with tracking information.
+
+\subsubsection{Payment Gateway Providers}
+Payment gateway providers are external companies that provide secure payment
+processing solutions, such as PayPal, credit card processors, or other regional
+payment services.
+These providers ensure that customers' financial details are protected and that
+transactions are processed securely.
 
 \section{Conclusion}
+% TODO.
 The conclusion goes here.
 
 
@@ -623,6 +773,7 @@ The conclusion goes here.
 
 
 \appendices
+% TODO: Update appendices.
 \section{Proof of the First Zonklar Equation}
 Appendix one text goes here.
 
@@ -688,17 +839,10 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_ates.png}}]{Oğuz Anıl Ateş}
-Was born in Uşak.
-He graduated from Dursun Yalım Science High School in 2019.
-He was accepted to the Computer Engineering department of Manisa Celâl Bayar
-University (MCBU) in 2020.
-He finished the preparatory year with a 97 GPA\@.
-He continuous his fourth year of education in the field.
-\end{IEEEbiography}
-
-\begin{IEEEbiography}{Muhammet Berk Can}
-muhammet kim la
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_ozcan.png}}]{Emre Özcan}
+Senior Computer Engineering student at Manisa Celâl Bayar University
+specializing in embedded systems, low-level programming and library development.
+Skilled in clean code practices and first principles of computer science.
 \end{IEEEbiography}
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_gokce.png}}]{Eren Gökçe}
@@ -712,14 +856,21 @@ engineering principles and a commitment to
 impactful, efficient development.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_ozcan.png}}]{Emre Özcan}
-Senior Computer Engineering student at Manisa Celâl Bayar University
-specializing in embedded systems, low-level programming and library development.
-Skilled in clean code practices and first principles of computer science.
-\end{IEEEbiography}
-
 \begin{IEEEbiography}{Melisa Uyar}
 melisa kim la
+\end{IEEEbiography}
+
+\begin{IEEEbiography}{Muhammet Berk Can}
+Motorcu çocuk
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_ates.png}}]{Oğuz Anıl Ateş}
+Was born in Uşak.
+He graduated from Dursun Yalım Science High School in 2019.
+He was accepted to the Computer Engineering department of Manisa Celâl Bayar
+University (MCBU) in 2020.
+He finished the preparatory year with a 97 GPA\@.
+He continuous his fourth year of education in the field.
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
