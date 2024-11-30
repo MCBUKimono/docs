@@ -818,66 +818,66 @@ transactions are processed securely.
   user credentials, including email, password, and preferred address fields. Passwords
   shall be stored securely using encryption algorithms such as bcrypt or PBKDF2. APIs
   or backend endpoints shall be created to allow secure user detail updates.
-  \item \textbf{Item management:}
+  \item \textbf{SR-02 -- Item management:}
   The system shall include
   an admin interface to perform CRUD operations on items, including the following
   fields: title, description, images, brand, category, price, tax group, and
   discount. Changes in price, tax or discount shall not retroactively affect
   existing orders or invoices. The system shall validate all input data for item
   details before saving it to the database to ensure data consistency.
-  \item \textbf{Item inspection:}
+  \item \textbf{SR-03 -- Item inspection:}
   The system shall
   dynamically generate detailed item pages using item-specific database queries,
   displaying all associated fields such as title, description, images, and
   average review score. The system shall implement a mechanism to retrieve and
   display related customer-generated reviews and comments, including pagination
   where necessary.
-  \item \textbf{Product reviews \& comments:} The
+  \item \textbf{SR-04 -- Product reviews \& comments:} The
   system shall implement a feature allowing customers to submit reviews and
   comments through frontend forms, validating the input before saving it to the
   database. A database table shall store customer reviews with references to the
   associated product and customer IDs, ensuring relational integrity. APIs shall
   be created to retrieve and display reviews and ratings alongside product
   information.
-  \item \textbf{Item listing:} The system shall provide an
+  \item \textbf{SR-05 -- Item listing:} The system shall provide an
   endpoint or service to retrieve all items with essential details such as name,
   image, and price for display in the frontend. Pagination shall be implemented
   to handle large datasets.
-  \item \textbf{Item searching: }The system shall include
+  \item \textbf{SR-06 -- Item searching: }The system shall include
   search functionality. Filtering logic shall be implemented in the backend to
   handle search parameters.
-  \item \textbf{Favorite products management:} The system
+  \item \textbf{SR-07 -- Favorite products management:} The system
   shall support a database structure to store customer-specific favorite product
   lists, ensuring a many-to-many relationship between customers and items. These
   lists can be viewed by the creating customer.
-  \item \textbf{Item purchasing:} The system shall
+  \item \textbf{SR-08 -- Item purchasing:} The system shall
   implement a shopping cart feature fully on the frontend, enabling customers to
   add, update, and remove items. The cart will be stored in the customer's
   browser via local storage or session storage, ensuring persistence during the customer's
   session. Payment gateway integration shall securely handle order checkout using
   data sent from the frontend.
-  \item \textbf{Order status \& history listing:} The system shall provide the necessary
+  \item \textbf{SR-09 -- Order status \& history listing:} The system shall provide the necessary
   endpoints to track orders and associate them with customer accounts and
   generated invoices.
 \end{itemize}
 \subsubsection{Additional Functional Requirements to Support Other Stakeholders}
 \begin{itemize}
-  \item \textbf{Creation of invoices: }When an order is
+  \item \textbf{SR-10 -- Creation of invoices: }When an order is
   created, an invoice is created along with the order.
-  \item \textbf{Shipment notifications:} The system must
+  \item \textbf{SR-11 -- Shipment notifications:} The system must
   generate daily, upon creations of orders, notifications for administrators that
   alert them they need to fulfill a new shipment. If an order is created before a
   notification is created, the shipment notification must not be created.
-  \item \textbf{Creation of shipping labels:} The system must create shipping labels to be
+  \item \textbf{SR-12 -- Creation of shipping labels:} The system must create shipping labels to be
   printed and put onto boxes by workers in the warehouse.
 \end{itemize}
 \subsubsection{Additional Non-functional Requirements}
 \begin{itemize}
-  \item \textbf{Performance:} The system must handle up to
+  \item \textbf{SR-13 -- Performance:} The system must handle up to
   1000 concurrent users.
-  \item \textbf{Modularity:} The system must be modular
+  \item \textbf{SR-14 -- Modularity:} The system must be modular
   and easy to update.
-  \item \textbf{Implementation:} The system must be
+  \item \textbf{SR-15 -- Implementation:} The system must be
   implemented using the Java programming language. The JUnit unit-testing
   framework must be used.
 \end{itemize}
@@ -906,7 +906,339 @@ in parts of the system where the provided requirements are deemed to not create
 a robust system specification.
 
 \section{Structured System Requirements Specification}
-% TODO.
+\subsection{SR-01: Customer Registration \& Account Management}
+\begin{description}
+  \item[Function] \hfill \\
+  Customer registration, login, logout, and account management.
+  \item[Description] \hfill \\
+  Enables customers to
+  create an account, authenticate themselves, and manage their account details,
+  including email, password, and preferred address.
+  \item[Inputs] \hfill \\
+  Email address,
+  password, and preferred address, phone number?
+  \item[Source] \hfill \\
+  Customers via the
+  web interface.
+  \item[Outputs] \hfill \\
+  Confirmation of
+  successful account creation, login, or updates; error messages for invalid
+  input or failed authentication.
+  \item[Destination] \hfill \\
+  All information is
+  stored securely in the database.
+  \item[Action] \hfill \\
+  The system validates the inputs, ensuring that email
+  addresses are in the correct format and passwords meet the required strength
+  criteria. Passwords are hashed using algorithms like bcrypt or PBKDF2 before
+  being stored in the database. CRUD operations are performed for account
+  management, enabling updates to user details securely.
+  \item[Requirements] \hfill \\
+  The system requires robust input validation for data
+  integrity and secure storage mechanisms to protect user credentials.
+  \item[Precondition] \hfill \\
+  The system must be connected to an active database
+  instance.
+  \item[Postcondition] \hfill \\
+  Customer accounts are securely stored and can be
+  retrieved or updated as needed.
+  \item[Side effects] \hfill \\
+  A new User on the database or update on the already
+  existing User.
+\end{description}
+
+\subsection{SR-02: Item Management}
+\begin{description}
+  \item[Function] \hfill \\
+  Management of
+  product details, including CRUD operations.
+  \item[Description] \hfill \\
+  This functionality allows administrators to add,
+  update, or remove products while managing associated data such as titles,
+  descriptions, categories, prices, and discounts.
+  \item[Inputs] \hfill \\
+  Product
+  details, including title, description, images, category, price, tax group, and
+  discount.
+  \item[Source] \hfill \\
+  Administrators through a web-based admin interface.
+  \item[Outputs] \hfill \\
+  Notifications indicating the success or failure of
+  operations and updated product inventory in the database.
+  \item[Destination] \hfill \\
+  All product information is stored in the product
+  database table.
+  \item[Action] \hfill \\
+  The system validates all product details to ensure
+  consistency and accuracy before updating the database. Administrators can
+  modify product attributes without retroactively affecting past orders or
+  invoices.
+  \item[Requirements] \hfill \\
+  The system must ensure data integrity and provide a
+  user-friendly admin interface for efficient operations.
+  \item[Precondition] \hfill \\
+  The administrator must have valid credentials and
+  appropriate privileges.
+  \item[Postcondition] \hfill \\
+  Product data is updated in the system and available
+  for customer viewing.
+  \item[Side effects] \hfill \\
+  A new Item on the database or update on the already
+  existing Item.
+\end{description}
+
+\subsection{SR-03: Item Inspection}
+\begin{description}
+  \item[Function] \hfill \\
+    Display detailed
+  information about a selected product.
+  \item[Description] \hfill \\
+    Customers can view comprehensive details about a
+  specific product, including its description, price, images, and reviews.
+  \item[Inputs] \hfill \\
+    Product ID.
+  \item[Source] \hfill \\
+    The customer's selection from the product listing or
+  search results page.
+  \item[Outputs] \hfill \\
+    Detailed information about the selected product,
+  including user reviews and ratings, displayed on a dedicated product page.
+  \item[Destination] \hfill \\
+    The information is retrieved from the database and
+  rendered on the frontend.
+  \item[Action] \hfill \\
+    The system queries the database to retrieve all
+  relevant product data and renders it dynamically on the frontend. Associated
+  reviews and ratings are also fetched and displayed.
+  \item[Requirements] \hfill \\
+    Efficient database queries are essential to minimize
+  loading times and ensure seamless user experiences.
+  \item[Precondition] \hfill \\
+    The product must exist in the database.
+  \item[Postcondition] \hfill \\
+    Customers can view detailed product information,
+  including customer feedback.
+  \item[Side effects] \hfill \\
+    None.
+\end{description}
+
+\subsection{SR-04: Product Reviews \& Comments}
+\begin{description}
+  \item[Function] \hfill \\
+    Submission and
+  display of reviews and comments for products.
+  \item[Description] \hfill \\
+    Customers can provide feedback on products by
+  submitting reviews, ratings, and optional images. Submitted feedback is stored
+  in the database and displayed with the corresponding product.
+  \item[Inputs] \hfill \\
+    Review text, rating score, and optional images.
+  \item[Source] \hfill \\
+    Customers through a review submission form on the
+  product page.
+  \item[Outputs] \hfill \\
+    Confirmation of successful review submission or an
+  error message if submission fails.
+  \item[Destination] \hfill \\
+    Reviews and ratings are stored in the database and
+  linked to the respective product and customer accounts.
+  \item[Action] \hfill \\
+    The system validates the review data to ensure it
+  meets the format and content requirements. Approved reviews are stored and made
+  accessible for future queries.
+  \item[Requirements] \hfill \\
+    Input validation and proper database linking ensure
+  data consistency and integrity.
+  \item[Precondition] \hfill \\
+    The customer must be logged in to submit a review.
+  \item[Postcondition] \hfill \\
+    Submitted reviews are displayed on the product page
+  and factored into the product’s average rating.
+  \item[Side effects] \hfill \\
+    The average rating of the product is recalculated and
+  updated.
+\end{description}
+
+\subsection{SR-05: Item Listing}
+\begin{description}
+  \item[Function] \hfill \\
+    Display all
+  available products in the store.
+  \item[Description] \hfill \\
+    Provides customers with a comprehensive view of all
+  products available for purchase, with support for pagination to handle large
+  datasets.
+  \item[Inputs] \hfill \\
+    None for the initial view; filters or search terms
+  for customized views.
+  \item[Source] \hfill \\
+    Backend database.
+  \item[Outputs] \hfill \\
+    A list of products with essential details, such as
+  name, image, and price, displayed in the product catalog.
+  \item[Destination] \hfill \\
+    Information is dynamically rendered on the frontend.
+  \item[Action] \hfill \\
+    The system retrieves product data from the database,
+  formats it for display, and applies pagination for efficient navigation.
+  Filters and search parameters refine the displayed results based on customer
+  inputs.
+  \item[Requirements] \hfill \\
+    Robust database queries and responsive frontend
+  design are needed to ensure a seamless user experience.
+  \item[Precondition] \hfill \\
+    The database must contain product data.
+  \item[Postcondition] \hfill \\
+    Customers can view, filter, and navigate through the
+    product catalog.
+  \item[Side effects] \hfill \\
+    None.
+\end{description}
+
+\subsection{SR-06: Item Searching}
+\begin{description}
+  \item[Function] \hfill \\
+  Enable customers to
+  search and filter products.
+  \item[Description] \hfill \\
+  Customers can find specific products by using search
+  terms or applying filters, such as category, brand, or price range.
+  \item[Inputs] \hfill \\
+  Search term,
+  category, brand, price range, and other applicable filters.
+  \item[Source] \hfill \\
+  Customer input through the search bar or filter
+  options.
+  \item[Outputs] \hfill \\
+  A refined list of products matching the search
+  criteria.
+  \item[Destination] \hfill \\
+  The filtered product data is displayed dynamically on
+  the frontend.
+  \item[Action] \hfill \\
+  The system processes the input, applies filtering
+  logic, and queries the database to fetch matching records. The results are
+  formatted and displayed in the product catalog.
+  \item[Requirements] \hfill \\
+  The system must support advanced query optimization
+  to handle complex filters and ensure fast response times.
+  \item[Precondition] \hfill \\
+  The database must have indexed fields for search and
+  filter attributes.
+  \item[Postcondition] \hfill \\
+  Customers view a customized list of products based on
+  their search and filter criteria.
+  \item[Side effects] \hfill \\
+  None.
+\end{description}
+
+\subsection{SR-07: Favorite Products Management}
+\begin{description}
+  \item[Function] \hfill \\
+  Allow customers to
+  create and manage a list of favorite products.
+  \item[Description] \hfill \\
+  Customers can add products to a personalized
+  "favorites" list for quick access and review later.
+  \item[Inputs] \hfill \\
+  Product IDs to add or remove from the favorites list.
+  \item[Source] \hfill \\
+  Customer input via the product page or favorites
+  management interface.
+  \item[Outputs] \hfill \\
+  Updated favorites list displayed to the customer.
+  \item[Destination] \hfill \\
+  The favorites list is stored in the database and
+  linked to the customer's account.
+  \item[Action] \hfill \\
+  The system updates the database with the customer's
+  favorite products, reflecting additions or removals in real time. The updated
+  list is retrieved and displayed to the customer upon request.
+  \item[Requirements] \hfill \\
+  The database must support a many-to-many relationship
+  between customers and products.
+  \item[Precondition] \hfill \\
+  The customer must be logged in to access and manage
+  their favorites.
+  \item[Postcondition] \hfill \\
+  The customer's favorites list is stored and
+  accessible for future reference.
+  \item[Side effects] \hfill \\
+  A new Item is added to or deleted from the favorites
+  lists stored in the database.
+\end{description}
+
+\subsection{SR-08: Item Purchasing}
+\begin{description}
+  \item[Function] \hfill \\
+  Enable customers to
+  purchase items through a virtual shopping cart.
+  \item[Description] \hfill \\
+  Customers can add products to a cart, review the cart
+  contents, and proceed to checkout for payment and order creation.
+  \item[Inputs] \hfill \\
+  Product IDs and quantities to add to the cart, payment
+  details at checkout.
+  \item[Source] \hfill \\
+  Customer actions through the shopping cart interface
+  and checkout page.
+  \item[Outputs] \hfill \\
+  Confirmation of successful order placement or error
+  messages for failed transactions.
+  \item[Destination] \hfill \\
+  Order details are stored in the database, and payment
+  information is processed through a secure gateway.
+  \item[Action] \hfill \\
+  The system maintains a session-based shopping cart to
+  track selected items and quantities. At checkout, it validates the cart
+  contents, processes payment through the integrated gateway, and creates an
+  order in the system.
+  \item[Requirements] \hfill \\
+  Integration with a secure payment gateway and robust
+  error handling during the checkout process.
+  \item[Precondition] \hfill \\
+  Customers must be logged in to place an order.
+  \item[Postcondition] \hfill \\
+  The order is successfully created and associated with
+  the customer's account.
+  \item[Side effects] \hfill \\
+  The stock levels of purchased products are updated in
+  the database and a new order is created.
+\end{description}
+
+\subsection{SR-09: Order Status \& History Listing}
+\begin{description}
+  \item[Function] \hfill \\
+  Allow customers to
+  track the status of their orders and view order history.
+  \item[Description] \hfill \\
+  Customers can view the current status of active orders
+  and browse through their past orders, along with associated invoices.
+  \item[Inputs] \hfill \\
+  Customer account credentials to fetch order data.
+  \item[Source] \hfill \\
+  Customer action via the account dashboard.
+  \item[Outputs] \hfill \\
+  A list of orders with details such as order ID, date,
+  status, and associated invoices.
+  \item[Destination] \hfill \\
+  The information is retrieved from the database and
+  displayed on the customer’s account page.
+  \item[Action] \hfill \\
+  The system queries the database for the customer’s
+  order records, filters by status or date if applicable, and displays the data
+  in an organized format.
+  \item[Requirements] \hfill \\
+  A database schema supporting order tracking and
+  association with customer accounts is necessary.
+  \item[Precondition] \hfill \\
+  Customers must have placed at least one order.
+  \item[Postcondition] \hfill \\
+  The customer can review the statuses and details of
+  their orders.
+  \item[Side effects] \hfill \\
+  None.
+\end{description}
 
 \section{Conclusion}
 % TODO.
