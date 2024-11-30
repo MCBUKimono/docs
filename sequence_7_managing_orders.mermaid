@@ -1,0 +1,31 @@
+sequenceDiagram
+    actor Customer
+    participant FE as Front-end
+    participant BE as Back-end
+    participant DB as Database
+
+    Customer ->>+ FE: Go to order list page
+    FE ->>+ BE: Request order list
+    BE ->>+ DB: Retrieve the customer's orders
+    DB -->>- BE: Send Array<Order>
+    BE -->>- FE: Send the orders
+    FE -->>- Customer: Render orders
+
+    opt The customer cancels an order
+        Customer ->>+ FE: Click "Cancel" on an order
+        FE ->>+ BE: HTTP request
+        alt The order is fulfilled
+            BE ->>+ DB: Check status of :Order
+            DB -->>- BE: :Order status is fulfilled
+            BE -->> FE: Failure HTTP response
+            FE -->> Customer: Display error message
+        else The order is not fulfilled
+            BE ->>+ DB: Check status of :Order
+            DB -->>- BE: :Order status is unfulfilled
+            BE ->>+ DB: Set status to "unfulfilled"
+            DB -->>- BE: (done)
+            BE -->> FE: Success HTTP response
+            FE -->> Customer: Display new order details
+        end
+        deactivate FE
+    end
