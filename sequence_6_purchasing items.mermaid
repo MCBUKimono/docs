@@ -16,29 +16,31 @@ sequenceDiagram
     alt Payment denied
         BE ->> PG: Send payment details
         activate PG
-        PG ->> BE: Payment denied
+        PG -->> BE: Payment denied
         deactivate PG
-        BE ->> FE: Send error object
-        FE ->> Customer: Display error page
+        BE -->> FE: Send error object
+        FE -->> Customer: Display error page
     else Payment authorized
         BE ->> PG: Send payment details
         activate PG
-        PG ->> BE: Payment authorized
+        PG -->> BE: Payment authorized
         deactivate PG
         create participant Order as :Order
         BE ->> Order: <create new Order>
         create participant Invoice as :Invoice
         Order ->> Invoice: <create new Invoice>
 
-        BE ->> Order: Save to DB
+        BE ->>+ Order: Save to DB
         Order ->> DB: Send own details
-        Order ->> Invoice: Save to DB
+        activate DB; deactivate DB
+        Order ->>+ Invoice: Save to DB
         Invoice ->> DB: Send own details
-        BE ->> FE: Send Order and Invoice details
-        FE ->> Customer: Display Order and Invoice details
+        activate DB; deactivate DB
+        Invoice -->>- Order: (saved)
+        Order -->>- BE: (saved)
+        BE -->>- FE: Send Order and Invoice details
+        FE -->> Customer: Display Order and Invoice details
     end
-
-    deactivate BE
 
     Customer ->> FE: Close website
     deactivate FE

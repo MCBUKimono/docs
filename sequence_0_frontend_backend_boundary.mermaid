@@ -8,9 +8,8 @@ sequenceDiagram
         participant DB as Database
     end
 
-    activate FE
-    Customer ->> FE: Action
     alt Valid session token
+        Customer ->>+ FE: Action
         FE ->> BE: HTTP request
         activate BE
         BE ->> DB: Check if session is valid
@@ -18,10 +17,13 @@ sequenceDiagram
         DB -->> BE: Session is valid
         deactivate DB
         BE ->> BE: Handle request
-        BE ->> FE: HTTP response
+        BE -->> FE: HTTP response
         deactivate BE
-        FE ->> FE: Handle response<br>(show new page or modify current page)
+        FE ->> FE: Handle response
+        FE -->> Customer: Show new or modified page
+        deactivate FE
     else Invalid token
+        Customer ->>+ FE: Action
         FE ->> BE: HTTP request
         activate BE
         BE ->> DB: Check if session is valid
@@ -29,8 +31,8 @@ sequenceDiagram
         DB -->> BE: Session is invalid or expired
         deactivate DB
         note over BE: The request is not handled.
-        BE ->> FE: HTTP 403 Response
+        BE -->> FE: HTTP 403 Response
         deactivate BE
-        FE ->> Customer: Render login page
+        FE -->> Customer: Render login page
+        deactivate FE
     end
-    deactivate FE

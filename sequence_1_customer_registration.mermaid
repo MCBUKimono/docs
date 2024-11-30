@@ -12,25 +12,24 @@ sequenceDiagram
     alt Email is in use
         BE ->> DB: Check if email is used
         activate DB
-        DB ->> BE: Email is in use
+        DB -->> BE: Email is in use
         deactivate DB
-        BE ->> FE: Email is in use
-        FE ->> Customer: Display error page
+        BE -->> FE: Email is in use
+        FE -->> Customer: Display error page
     else Email is available
         BE ->> DB: Check if email is used
         activate DB
-        DB ->> BE: Email is available
+        DB -->> BE: Email is available
         deactivate DB
         create participant CustomerObj as :Customer
         BE ->> CustomerObj: <create new Customer>
-        BE ->> CustomerObj: Save to DB
-        CustomerObj ->> DB: Send own details
+        BE ->>+ CustomerObj: Save to DB
+        CustomerObj ->>- DB: Send own details
         activate DB
         deactivate DB
-        BE ->> FE: Success
-        FE ->> Customer: Display success page
+        BE -->>- FE: Success
+        FE -->> Customer: Display success page
     end
-    deactivate BE
     Customer ->> FE: Close website
     deactivate FE
 

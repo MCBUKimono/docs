@@ -6,11 +6,11 @@ sequenceDiagram
 
     Customer ->>+ FE: Go to "all products" section
     note over Customer,DB: Refer to the sequence diagram for "Browsing and Searching for Products"
-    FE ->>- Customer: Display list of products
+    FE -->>- Customer: Display list of products
 
     Customer ->>+ FE: Select a product
     FE ->>+ BE: Request details of the product
     BE ->>+ DB: Get details of the product
     DB -->>- BE: Respond with Product
-    BE ->>- FE: Send the details of the product
-    FE ->>- Customer: Display the details of the<br>selected product
+    BE -->>- FE: Send the details of the product
+    FE -->>- Customer: Display the details of the<br>selected product

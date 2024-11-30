@@ -5,27 +5,27 @@ sequenceDiagram
     participant DB as Database
 
     Customer ->>+ FE: Go to "all products" section
-    FE ->>+ BE: HTTP request
+    FE ->>+ BE: Request products
     BE ->>+ DB: Retrieve first "n" products<br>from the list of products
     DB -->>- BE: Respond with Array<Product>
-    BE ->>- FE: Respond with list of products
-    FE ->>- Customer: Display list of products
+    BE -->>- FE: Respond with list of products
+    FE -->>- Customer: Display list of products
 
     opt Pagination
         Customer ->>+ FE: Navigate to the next page
-        FE ->>+ BE: HTTP request
+        FE ->>+ BE: Request next set of products
         BE ->>+ DB: Retrieve the next "n" products<br>from the list of products
         DB -->>- BE: Respond with Array<Product>
-        BE ->>- FE: Respond with list of products
-        FE ->>- Customer: Modify the page to use the<br>newly received products
+        BE -->>- FE: Respond with list of products
+        FE -->>- Customer: Modify the page to use the<br>newly received products
     end
 
     opt Filtering
         Customer ->> FE: Add search filters
         Customer ->>+ FE: Apply search filters
-        FE ->>+ BE: HTTP request
+        FE ->>+ BE: Request relevant products
         BE ->>+ DB: Retrieve "n" products from the list of<br>products that fulfill the filters
         DB -->>- BE: Respond with Array<Product>
-        BE ->>- FE: Respond with list of products
-        FE ->>- Customer: Modify the page to use the<br>newly received products
+        BE -->>- FE: Respond with list of products
+        FE -->>- Customer: Modify the page to use the<br>newly received products
     end
