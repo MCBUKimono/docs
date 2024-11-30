@@ -60,10 +60,20 @@ classDiagram
     }
 
     Customer "1" -- "*" Product: favorites
-    class Customer{
+    class Customer {
         Integer id
         String name
         List~Product~ favorites
+        String passwordHash
+        verifyPassword() Boolean
+    }
+
+    Session "*" -- "1" Customer
+    class Session {
+        Integer id
+        Customer customer
+        String token
+        LocalDateTime expiry
     }
 
     Product "1" -- "*" ProductSnapshot
