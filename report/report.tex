@@ -655,14 +655,14 @@ eliminate costs (e.g. PostgreSQL instead of Oracle DB).
 
 \subsection{Project Timeline}
 \begin{itemize}
-  \item \textbf{Week 1-2:} Requirements gathering and feasibility study.
-  \item \textbf{Week 3-4:} System design.
-  \item \textbf{Week 5-6:} Development.
+  \item \textbf{Week 1--2:} Requirements gathering and feasibility study.
+  \item \textbf{Week 3--4:} System design.
+  \item \textbf{Week 5--6:} Development.
     \begin{itemize}
       \item Backend API and database integration.
       \item Frontend implementation and unit tests.
     \end{itemize}
-  \item \textbf{Week 6-7:} Testing and debugging.
+  \item \textbf{Week 6--7:} Testing and debugging.
 \end{itemize}
 
 \subsection{Legal and Ethical Feasibility}
@@ -749,8 +749,141 @@ payment services.
 These providers ensure that customers' financial details are protected and that
 transactions are processed securely.
 
-\section{Problems in the Requirements Engineering Process and Mitigations}
-% TODO: Burası tam değil.
+\section{Problems and Mitigations}
+\subsection{In the Requirements Elicitation Process}
+We have identified
+\begin{enumerate*}
+  \item \textbf{unclear goals,} and
+  \item \textbf{feature creep}
+\end{enumerate*}
+as potential problems.
+
+Without external feedback, it can be challenging to identify all the critical
+requirements, and we might focus too much on secondary features that are not
+essential for the core functionality of our system.
+\textit{(unclear goals)}
+
+The lack of constraints might cause us to continually expand the scope of the
+project, which could delay the launch and increase complexity unnecessarily.
+\textit{(feature creep)}
+
+We propose the following mitigations:
+\begin{itemize}
+  \item \textbf{Clarifying the objectives:}
+    We must define clear and concrete project goals from the start and ensure that
+    every feature aligns with the broader system objectives.
+  \item \textbf{Prioritization of features:}
+    We should use a
+    prioritization framework like MoSCoW (Must have, Should have, Could have,
+    Won't have) to focus only on the features essential to the system’s core
+    functionality.
+  \item \textbf{Defining the minimum viable product:}
+    We should limit the initial to what is necessary for launch and consider
+    additional features in future iterations.
+\end{itemize}
+
+\subsection{In the System Design Process}
+We have identified \textbf{overcomplication} as the main problem in this
+process:
+Designing the system too complex with too many features might lead to
+difficulties in future updates and maintenance.
+
+To resolve this problem, we propose to \textbf{simplify the architecture} and
+focus on designing a system that is modular and can be expanded over time.
+Keep the design as simple as possible, focusing on core features first.
+
+\subsection{In the Development Process}
+We have identified
+\begin{enumerate*}
+  \item \textbf{poor time management among team members,} and
+  \item \textbf{lack of peer feedback}
+\end{enumerate*}
+as potential problems.
+
+In a team setting, members may have different priorities or time constraints,
+leading to delays in completing tasks.
+This can result from poor coordination, lack of clear deadlines for tasks, or
+personal time management issues.
+Some team members may struggle to balance their tasks with other commitments,
+which can cause bottlenecks in the development process.
+\textit{(poor time management among team members)}
+
+Without a mentor or external collaborators, we might overlook potential
+improvements or miss identifying issues.
+\textit{(lack of peer feedback)}
+
+We propose the following mitigations:
+\begin{itemize}
+  \item \textbf{Setting deadlines and milestones:}
+    We should set realistic milestones and deadlines for each stage of the
+    development process to ensure steady progress.
+    Tools like \textit{Trello} can help with tracking.
+  \item \textbf{Seeking external feedback:}
+    We can involve a mentor for regular code reviews and feedback sessions.
+    We can share our work on platforms like GitHub and ask for feedback from
+    other developers or relevant communities.
+    This will help us catch potential improvements, identify issues early, and
+    ensure we're following best practices.
+\end{itemize}
+
+\subsection{In the Testing Process}
+We have identified \textbf{bias in testing} as the main problem in this
+process:
+Since we know the system intimately, we might miss errors or overlook edge cases
+that a new user would encounter.
+
+We propose \textbf{involving external testers} as a mitigation:
+We will ask a few friends or peers to test the system as if they were new users
+to catch issues we might have missed.
+
+\subsection{In the Deployment Process}
+We may face unexpected issues during deployment due to the lack of experience
+with deployment pipelines.
+
+To mitigate this issue, we will
+\begin{enumerate*}
+  \item \textbf{use a staging environment} to test the deployment process before
+    moving to production, and
+  \item \textbf{take frequent backups and use version control} to be able to
+    roll back changes if necessary.
+\end{enumerate*}
+
+\subsection{In Stakeholder Communication}
+As our team consists of five people, communication gaps can occur, leading to
+misunderstandings, missed requirements, or delays in task completion.
+
+We will mitigate these problems by
+\begin{enumerate*}
+  \item \textbf{establishing clear communication channels}
+    like Microsoft Teams to keep everyone connected and ensure that discussions
+    are documented and easy to follow, and
+  \item \textbf{holding regular meetings}
+    to update the team on progress and discuss any challenges.
+\end{enumerate*}
+
+\subsection{Security}
+With multiple team members focusing on different aspects of the project,
+security could be neglected, leading to vulnerabilities such as weak
+authentication, unencrypted data, or API vulnerabilities.
+
+We should adopt security best practices from the start, such as using SSL/TLS
+encryption for secure communications and \textbf{bcrypt} for password hashing.
+
+We should Conduct regular security audits using tools like OWASP ZAP or Burp
+Suite to identify vulnerabilities in the system.
+In addition, we can assign one team member as a security lead to oversee
+security concerns.
+
+\subsection{Documentation}
+Lack of clear documentation can make it hard to understand the system later or
+implement future changes, and as the system evolves, our documentation may
+become outdated, making it harder to maintain or scale.
+
+To mitigate these problems, we should
+\textbf{document key decisions and code} and
+\textbf{keep the documentation up-to-date} as the system evolves.
+Whenever a feature is added or an update is made, the related documentation
+should be updated to avoid any confusion later.
 
 \section{Requirements}
 \subsection{User Requirements}
@@ -996,7 +1129,7 @@ a robust system specification.
     Customers can view comprehensive details about a
   specific product, including its description, price, images, and reviews.
   \item[Inputs] \hfill \\
-    Product ID.
+    Product ID\@.
   \item[Source] \hfill \\
     The customer's selection from the product listing or
   search results page.
@@ -1239,6 +1372,9 @@ a robust system specification.
   \item[Side effects] \hfill \\
   None.
 \end{description}
+
+\section{Stories and user scenarios}
+% TODO.
 
 \section{Conclusion}
 % TODO.
