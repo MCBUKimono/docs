@@ -1142,7 +1142,7 @@ a robust system specification.
   including email, password, and preferred address.
   \item[Inputs] \hfill \\
   Email address,
-  password, and preferred address, phone number?
+  password, and preferred address, phone number.
   \item[Source] \hfill \\
   Customers via the
   web interface.
@@ -1365,7 +1365,7 @@ a robust system specification.
   create and manage a list of favorite products.
   \item[Description] \hfill \\
   Customers can add products to a personalized
-  "favorites" list for quick access and review later.
+  ``favorites'' list for quick access and review later.
   \item[Inputs] \hfill \\
   Product IDs to add or remove from the favorites list.
   \item[Source] \hfill \\
@@ -1483,8 +1483,6 @@ a robust system specification.
 \end{figure}
 \begin{description}
   \item[Actors] Customer, System
-  \item[Preconditions] \hfill \\
-    The customer is on the registration page.
 \end{description}
 \subsubsection{Successful Registration Scenario}
 \begin{description}
@@ -1507,7 +1505,7 @@ a robust system specification.
       \item The customer attempts to register with an already registered email
         or a weak password.
       \item The system displays an error message indicating the issue
-        (e.g., "Email is already in use").
+        (e.g., ``Email is already in use'').
       \item The customer corrects the errors and successfully registers.
     \end{itemize}
   \item[Postconditions] \hfill \\
@@ -1524,18 +1522,17 @@ a robust system specification.
 \begin{description}
   \item[Actors] Customer, System
   \item[Preconditions] \hfill \\
-    The customer is logged in to their account.
+    The customer is logged into their account.
 \end{description}
 \subsubsection{Updating the Name of the Account Scenario}
 \begin{description}
   \item[Main Flow] \hfill
   \begin{itemize}
-    \item The customer logs into their account.
-    \item They navigate to the "Account Settings" page.
-    \item They edit the "Name" field and save the changes.
+    \item They navigate to the ``Account Settings'' page.
+    \item They edit the ``Name'' field and save the changes.
     \item The system validates the input and updates the name in the database.
     \item A confirmation message is displayed to the customer
-      (e.g., "Your name has been updated successfully.").
+      (e.g., ``Your name has been updated successfully.'').
   \end{itemize}
   \item[Postconditions] \hfill \\
     The customer's updated name is saved and reflected in their account.
@@ -1544,8 +1541,8 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
   \begin{itemize}
-    \item The customer navigates to the "Account Settings" page.
-    \item They select the "Change Password" option.
+    \item The customer navigates to the ``Account Settings'' page.
+    \item They select the ``Change Password'' option.
     \item They enter their current password and the new password.
     \item The system validates the inputs (e.g., the current password is
       correct, and the new password meets security requirements).
@@ -1559,7 +1556,7 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
     \begin{itemize}
-      \item The customer navigates to the "Account Settings" page.
+      \item The customer navigates to the ``Account Settings'' page.
       \item They edit their email or phone number and save the changes.
       \item The system validates the new contact information (e.g., email format
         is correct, phone number has a valid structure).
@@ -1582,7 +1579,7 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
     \begin{itemize}
-      \item The customer navigates to the "All Products" page.
+      \item The customer navigates to the ``All Products'' page.
       \item The system displays a paginated list of products,
         including images, titles, and prices.
       \item The customer browses through multiple pages to explore options.
@@ -1641,9 +1638,10 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
     \begin{itemize}
-      \item The customer clicks the "Add to Favorites" button on a product page.
+      \item The customer clicks the ``Add to Favorites'' button on a product
+        page.
       \item The system adds the product to the customer's favorites list.
-      \item The customer navigates to the "Favorites" section to verify the
+      \item The customer navigates to the ``Favorites'' section to verify the
         product is listed.
     \end{itemize}
   \item[Postconditions] \hfill \\
@@ -1709,7 +1707,7 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
     \begin{itemize}
-      \item The customer navigates to the "Order History" section.
+      \item The customer navigates to the ``Order History'' section.
       \item The system displays a list of past and current orders with their
         statuses.
       \item The customer views the details of a specific order, including the
@@ -1722,7 +1720,7 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
     \begin{itemize}
-      \item The customer selects an unfulfilled order and clicks "Cancel."
+      \item The customer selects an unfulfilled order and clicks ``Cancel.''
       \item The system verifies the order status and confirms the cancellation.
       \item The customer receives a notification that the order was successfully
         canceled.
@@ -1793,13 +1791,14 @@ a robust system specification.
 \begin{description}
   \item[Main Flow] \hfill
     \begin{itemize}
-      \item The administrator navigates to the "Product Management" panel.
-      \item They click the "Add New Product" option.
+      \item The administrator navigates to the ``Product Management'' panel.
+      \item They click the ``Add New Product'' option.
       \item The administrator fills in all required fields, including title,
         description, price, stock quantity, category, and uploads images.
       \item The system validates the data and saves the new product.
-      \item They click the "Save" button.
-      \item A confirmation message appears (e.g., "Product added successfully").
+      \item They click the ``Save'' button.
+      \item A confirmation message appears
+        (e.g., ``Product added successfully'').
     \end{itemize}
   \item[Postconditions] \hfill \\
     The product is added to the inventory and visible in the product list.
@@ -1829,20 +1828,20 @@ registration should be added.
 \subsubsection{Error Handling}
 It should be ensured that the system displays detailed error messages for
 invalid inputs, such as
-"Email is already in use" or
-"Password must include at least one special character."
+``Email is already in use'' or
+``Password must include at least one special character.''
 
 \subsection{User Story 2: Customer Account Management}
 \subsubsection{Name Updating Functionality}
-An editable "Name" field in the "Account Settings" page should be added.
+An editable ``Name'' field in the ``Account Settings'' page should be added.
 Backend logic to validate and update the name in the database should be
 implemented, ensuring the changes reflect immediately.
 \subsubsection{Password Change Feature}
-A "Change Password" option should be included in the account settings.
+A ``Change Password'' option should be included in the account settings.
 The system should verify the current password, enforce password strength
 requirements, and securely update the password.
 \subsubsection{Updating Contact Information}
-Email and phone number in should be editable in "Account Settings."
+Email and phone number in should be editable in ``Account Settings.''
 Inputs should be validated for format and uniqueness before saving.
 Appropriate confirmation messages should be displayed upon success.
 
@@ -1873,7 +1872,7 @@ and pagination if necessary.
 A button should be added to product pages that allows logged-in users to save
 the product to their favorites list.
 \subsubsection{Favorites Management}
-A "Favorites" section where customers can view and manage their saved
+A ``Favorites'' section where customers can view and manage their saved
 items should be created.
 The favorites list should be ensured to sync with the backend for persistence.
 
@@ -2039,8 +2038,8 @@ They are elaborated in the following subsections.
     connections).
     Sending alerts to administrators for manual intervention if errors persist.
 
-    Displaying user-friendly error messages to customers (e.g., "The system is
-    temporarily unavailable. Please try again later.").
+    Displaying user-friendly error messages to customers (e.g., ``The system is
+    temporarily unavailable. Please try again later.'').
 \end{description}
 
 \subsection{Third-Party Service Integration}
@@ -2211,7 +2210,7 @@ impactful, efficient development.
 She was born on July 29, 2001, in Pinneberg, Germany.
 She is currently a fourth-year computer engineering student at Manisa Celâl
 Bayar University, specializing in back-end development.
-She completed her internship at "BusinessUp," a performance marketing agency,
+She completed her internship at ``BusinessUp,'' a performance marketing agency,
 where she now works part-time.
 At BusinessUp, she hones her skills in the Liquid programming language and
 works as a junior full-stack developer.
@@ -2226,7 +2225,7 @@ School.
 He is currently pursuing a bachelor's degree at Manisa Celâl Bayar University.
 He is a fourth-year computer engineering student, specializing in the field of
 back-end development.
-He is a member of the "MCBU Bilişim" Community at Manisa Celâl Bayar University.
+He is a member of the ``MCBU Bilişim'' Community at Manisa Celâl Bayar University.
 \end{IEEEbiography}
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author_ates.png}}]{Oğuz Anıl Ateş}
