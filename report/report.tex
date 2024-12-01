@@ -103,6 +103,7 @@
 % The latest version can be obtained at:
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
+\usepackage{csquotes}
 
 
 
@@ -345,7 +346,7 @@
 
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+%\hyphenation{op-tical net-works semi-conduc-tor}
 
 
 \begin{document}
@@ -1044,6 +1045,48 @@ should be updated to avoid any confusion later.
   implemented using the Java programming language. The JUnit unit-testing
   framework must be used.
 \end{itemize}
+
+\section{Requirements Checking}
+\subsection{Validity}
+\begin{displayquote}
+  Does the system provide functions that best support customer needs?
+\end{displayquote}
+Yes, the proposed features, such as a secure e-commerce platform with intuitive
+user interfaces, robust inventory management, and integration with payment
+gateways, align well with customer and stakeholder expectations.
+
+\subsection{Consistency}
+\begin{displayquote}
+  Are there any requirements conflicts?
+\end{displayquote}
+No major conflicts are evident.
+The document emphasizes modular design and clear delineation of stakeholder
+responsibilities.
+This reduces the risk of overlapping or contradictory requirements.
+
+\subsection{Completeness}
+\begin{displayquote}
+  Are all functions required by the customer included?
+\end{displayquote}
+Most core and additional functions (e.g., GDPR compliance, order tracking)
+appear to be included.
+However, there is no explicit mention of specific accessibility features, which
+could be important for a complete solution.
+
+\subsection{Realism}
+\begin{displayquote}
+  Can the requirements be implemented with the available budget and technology?
+\end{displayquote}
+Yes, the chosen stack (e.g., Java backend, PostgreSQL, DigitalOcean hosting) is
+feasible and cost-efficient.
+
+\subsection{Verifiability}
+\begin{displayquote}
+  Can the requirements be checked?
+\end{displayquote}
+Yes, the document mentions measurable milestones and objectives, such as GDPR
+compliance and platform scalability, which can be verified through testing and
+audits.
 
 \section{Discussion about the Completeness and Consistency of Requirements}
 The provided requirements represent a thorough attempt to specify a
@@ -1834,13 +1877,11 @@ accommodate users with specific visual impairments.
 Usability testing should be performed for readability and accessibility in both
 light and dark modes.
 
+\section{System Boundaries}
+% TODO.
+
 \section{Conclusion}
 % TODO.
-The conclusion goes here.
-
-
-
-
 
 % if have a single appendix:
 %\appendix[Proof of the Zonklar Equations]
