@@ -103,7 +103,6 @@
 % The latest version can be obtained at:
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
-\usepackage{csquotes}
 
 
 
@@ -188,7 +187,6 @@
 % Also of interest may be the (relatively newer and more customizable)
 % algorithmicx.sty package by Szasz Janos:
 % http://www.ctan.org/pkg/algorithmicx
-\usepackage[inline]{enumitem}
 
 
 % *** ALIGNMENT PACKAGES ***
@@ -343,6 +341,19 @@
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
 % (Unless specifically asked to do so by the journal or conference you plan
 % to submit to, of course. )
+
+
+\usepackage{csquotes}
+\usepackage[inline]{enumitem}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,
+  urlcolor=cyan,
+}
+
 
 
 % correct bad hyphenation here
@@ -525,7 +536,6 @@ will be developed, confirming the project's approach. This work will contribute
 to the improvement of e-commerce platforms and offer valuable insights for
 future development in the online retail industry.
 
-% TODO:
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
@@ -1878,7 +1888,120 @@ Usability testing should be performed for readability and accessibility in both
 light and dark modes.
 
 \section{System Boundaries}
-% TODO.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{boundary}
+\caption{Boundary diagram of the system.}
+\label{fig:boundary}
+\end{figure}
+
+The system boundaries define the interfaces between the system and its
+environment, including external users, devices, and services.
+The boundary diagram in \autoref{fig:boundary} illustrates the key boundaries
+of the system.
+They are elaborated in the following subsections.
+
+\subsection{Initialize System}
+\begin{description}
+  \item[Description] \hfill \\
+    The process of initializing all subsystems to bring the website online.
+  \item[Actors] \hfill \\
+    System Administrator, System
+  \item[Tasks] \hfill \\
+    Booting up the web server, database, and API services.
+    Establishing connections to third-party services such as analytics,
+    marketing tools, and social media integrations.
+    Verifying availability of key components like user authentication, product
+    listing, and search modules.
+\end{description}
+
+\subsection{Shutdown System}
+\begin{description}
+  \item[Description] \hfill \\
+    Graceful termination of all subsystems.
+  \item[Actors] \hfill \\
+    System Administrator, System
+  \item[Tasks] \hfill \\
+    Terminate ongoing transactions and save current session data.
+    Close connections with external services (e.g., marketing APIs, payment
+    gateways). Safely sync database changes before shutting down the system.
+\end{description}
+
+\subsection{System Maintenance}
+\begin{description}
+  \item[Descrition] \hfill \\
+    Managing scheduled maintenance activities to ensure system integrity and
+    performance.
+  \item[Actors] \hfill \\
+    System Administrator, System
+  \item[Tasks] \hfill \\
+    Backing up databases and files before performing updates.
+    Installing updates for the website framework, plugins, and third-party
+    tools.
+    Testing system functionality after updates to detect any issues.
+    Monitoring scheduled tasks like email campaign distributions or automated
+    notifications.
+\end{description}
+
+\subsection{Error Recovery}
+\begin{description}
+  \item[Description] \hfill \\
+    Handling unexpected errors or failures during system operation.
+  \item[Actors] \hfill \\
+    System Administrator, System
+  \item[Tasks] \hfill \\
+    Detecting and logging errors such as server crashes, API failures, or
+    database disconnections.
+    Automatically retrying failed operations (e.g., re-establishing API
+    connections).
+    Sending alerts to administrators for manual intervention if errors persist.
+
+    Displaying user-friendly error messages to customers (e.g., "The system is
+    temporarily unavailable. Please try again later.").
+\end{description}
+
+\subsection{Third-Party Service Integration}
+\begin{description}
+  \item[Description] \hfill \\
+    Managing dependencies on external services such as payment gateways,
+    analytics tools, and social media platforms.
+  \item[Actors] \hfill \\
+    System Administrator, System, Third-party APIs
+  \item[Tasks] \hfill \\
+    Validating connectivity and API keys during system startup.
+    Retrying failed API calls or switching to alternative providers in case of
+    outages.
+    Logging interactions with third-party services for troubleshooting.
+\end{description}
+
+\subsection{User Account Management}
+\begin{description}
+  \item[Description] \hfill \\
+    Ensuring proper handling of user data during account creation, updates, and
+    deletions.
+  \item[Actors] \hfill \\
+    Customers, System
+  \item[Tasks] \hfill \\
+    Validating user-provided data (e.g., email verification).
+    Encrypting sensitive information such as passwords.
+    Deleting user accounts while maintaining historical marketing data
+    (e.g., anonymous purchase or interaction history).
+\end{description}
+
+\subsection{Security Monitoring}
+\begin{description}
+  \item[Description] \hfill \\
+    Ensuring the website remains secure against potential threats.
+  \item[Actors] \hfill \\
+    System Administrator, Security Tools
+  \item[Tasks] \hfill \\
+    Scanning for vulnerabilities, such as outdated libraries or unauthorized
+    access attempts.
+    Monitoring for DDoS attacks and activating mitigations
+    (e.g., rate limiting).
+    Applying security patches to the server and software stack.
+\end{description}
+
 
 \section{Conclusion}
 % TODO.
